@@ -16,9 +16,3 @@ export const decorators = [
 		template: `<div style="margin: 3em;"><story /></div>`,
 	}),
 ];
-
-export const argTypes = {
-	label: { control: "text" },
-};
-
-export const args = { label: "Label" };

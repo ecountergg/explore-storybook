@@ -1,25 +1,29 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import type { Props } from "./button.types";
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
 	variant: "primary",
 	size: "md",
+	type: "button",
+	tag: "button",
 });
+
+const classes = computed(() => ({
+	button: props.tag === "button",
+	link: props.tag === "a",
+	[`button--${props.variant}`]: props.variant && props.tag === "button",
+	[`link--${props.variant}`]: props.variant && props.tag === "a",
+	[`button--${props.size}`]: props.size && props.tag === "button",
+	[`link--${props.size}`]: props.size && props.tag === "a",
+	["button--disabled"]: props.disabled && props.tag === "button",
+	["link--disabled"]: props.disabled && props.tag === "a",
+}));
 </script>
 <template>
-	<button
-		class="button"
-		:class="{
-			'button--primary': variant === 'primary',
-			'button--secondary': variant === 'secondary',
-			'button--sm': size === 'sm',
-			'button--md': size === 'md',
-			'button--disabled': disabled,
-		}"
-		:disabled="disabled"
-	>
+	<component :is="tag" :class="classes" :type="type" :disabled="disabled">
 		<slot />
-	</button>
+	</component>
 </template>
 <style lang="scss" scoped>
 .button {
@@ -38,6 +42,18 @@ withDefaults(defineProps<Props>(), {
 	}
 	&--disabled {
 		@apply cursor-not-allowed bg-gray-500 hover:bg-gray-700;
+	}
+}
+.link {
+	@apply cursor-pointer font-semibold flex items-center transition-all duration-300 hover:underline;
+	&--primary {
+		@apply text-blue-500;
+	}
+	&--secondary {
+		@apply text-purple-500;
+	}
+	&--disabled {
+		@apply text-gray-500 hover:no-underline cursor-not-allowed;
 	}
 }
 </style>

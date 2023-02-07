@@ -7,6 +7,7 @@ const meta: Meta<ExtractComponentProps<typeof ALabel>> = {
 	component: ALabel,
 	args: {
 		id: "label",
+		label: "Label",
 	},
 };
 

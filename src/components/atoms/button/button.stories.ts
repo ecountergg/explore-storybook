@@ -8,6 +8,24 @@ const meta: Meta<ExtractComponentProps<typeof AButton>> = {
 	parameters: {
 		layout: "centered",
 	},
+	args: {
+		tag: "button",
+		type: "button",
+	},
+	argTypes: {
+		tag: {
+			options: ["button", "a"],
+			control: {
+				type: "select",
+			},
+		},
+		type: {
+			options: ["button", "reset", "submit"],
+			control: {
+				type: "select",
+			},
+		},
+	},
 };
 
 export default meta;
@@ -22,6 +40,7 @@ const Template: StoryFn<typeof AButton> = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {
+	tag: "button",
 	variant: "primary",
 	size: "sm",
 	disabled: false,
@@ -39,6 +58,7 @@ Default.argTypes = {
 
 export const Primary = Template.bind({});
 Primary.args = {
+	tag: "button",
 	variant: "primary",
 	size: "sm",
 };
@@ -55,6 +75,7 @@ Primary.argTypes = {
 
 export const Secondary = Template.bind({});
 Secondary.args = {
+	tag: "button",
 	variant: "secondary",
 	size: "sm",
 };
@@ -71,6 +92,7 @@ Secondary.argTypes = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
+	tag: "button",
 	disabled: true,
 	variant: "primary",
 };

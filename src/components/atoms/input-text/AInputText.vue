@@ -1,10 +1,19 @@
 <script setup lang="ts">
-import type { Props } from "./input-text.types";
+import { useVModel } from "@vueuse/core";
 
-defineProps<Props>();
+import type { Props, Emits } from "./input-text.types";
+
+const props = withDefaults(defineProps<Props>(), {
+	type: "text",
+});
+
+const emits = defineEmits<Emits>();
+
+const value = useVModel(props, "modelValue", emits);
 </script>
 <template>
 	<input
+		v-model="value"
 		:id="id"
 		class="input"
 		:class="{
@@ -12,8 +21,9 @@ defineProps<Props>();
 			'input--primary': state === 'primary',
 			'input--success': state === 'success',
 		}"
-		type="text"
+		:type="type"
 		:placeholder="placeholder"
+		@input="emits('update:modelValue', $event.target?.value as string)"
 	/>
 </template>
 <style lang="scss" scoped>

@@ -4,13 +4,6 @@ import type { Props } from "./input-text.types";
 defineProps<Props>();
 </script>
 <template>
-	<label
-		v-if="label"
-		class="block text-gray-700 text-sm font-bold mb-2"
-		:for="id"
-	>
-		{{ label }}
-	</label>
 	<input
 		:id="id"
 		class="input"

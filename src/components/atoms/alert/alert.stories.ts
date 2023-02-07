@@ -10,11 +10,6 @@ const meta: Meta<ExtractComponentProps<typeof AAlert>> = {
 		title: "Alert Title",
 		show: true,
 	},
-	parameters: {
-		actions: {
-			handles: ["click"],
-		},
-	},
 };
 
 export default meta;

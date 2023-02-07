@@ -7,5 +7,5 @@ export type Props = {
 };
 
 export type Emits = {
-	(e: "click", value: boolean): void;
+	(e: "click"): void;
 };
